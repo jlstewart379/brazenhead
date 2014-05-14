@@ -13,6 +13,7 @@ module Brazenhead
 
     def start(activity, base_package = nil)
       @their_package = base_package
+      forward "tcp:7777", "tcp:54767"
       instrument(runner, :packageName => base_package, :fullLauncherName => full(activity, base_package) , :class => the_test)
     end
 
