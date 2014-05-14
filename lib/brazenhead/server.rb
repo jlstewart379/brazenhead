@@ -12,8 +12,8 @@ module Brazenhead
     end
 
     def start(activity, base_package = nil)
-      # build
-      instrument(runner, :packageName => their_package, :fullLauncherName => full(activity, base_package) , :class => the_test)
+      @their_package = base_package
+      instrument(runner, :packageName => base_package, :fullLauncherName => full(activity, base_package) , :class => the_test)
     end
 
     def stop
@@ -35,12 +35,11 @@ module Brazenhead
     end
 
     def full(activity, base_package)
-      "#{base_package || their_package}.#{activity}"
+      "#{base_package}.#{activity}"
     end
 
     def their_package
-      'com.salonswipe.salonswipe'
-      # @manifest_info.package
+      @their_package
     end
 
     def runner
